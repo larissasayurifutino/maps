@@ -20,9 +20,9 @@ This project was inspired by:
 
 ## Data
 
-* [sidra.ibge.gov.br/cats_data][https://sidra.ibge.gov.br/tabela/4931]
+* [sidra.ibge.gov.br/cats_data](https://sidra.ibge.gov.br/tabela/4931)
 
-* [sidra.ibge.gov.br/dogs_data][https://sidra.ibge.gov.br/tabela/4930]
+* [sidra.ibge.gov.br/dogs_data](https://sidra.ibge.gov.br/tabela/4930)
 
 
 ## To do
