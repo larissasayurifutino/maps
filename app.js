@@ -2,7 +2,7 @@ let mapaMalha;
 let mapaDados;
 
 // Dados 
-let dados_uf = [
+let ufs = [
     //{"UF": "BR", "estado": "Brasil",              "dom_cao": 33754, "perc_cao": 46.1, "dom_gato": 14144, "perc_gato": 19.3}, 
     {"id": 11, "UF": "RO", "estado": "Rondônia",            "dom_cao": 381, "perc_cao": 64.8,   "dom_gato": 158, "perc_gato": 26.9}, 
     {"id": 12, "UF": "AC", "estado": "Acre",                "dom_cao": 161, "perc_cao": 60,     "dom_gato": 71, "perc_gato": 26.4}, 
@@ -76,22 +76,27 @@ async function loadMapData(){
      elemMunicipios.forEach((elemento) => {
         console.log(elemento.id);
 
-        /*let numAleatorio = Math.random();
-        
-        // Criando a propriedade dataset nos objetos 'elemento'
-        elemento.dataset.indice = numAleatorio.toFixed(2);
+        let elem_id = elemento.id
 
-        // opacidade
-        elemento.setAttribute('fill-opacity', numAleatorio)
+        for ( let uf of ufs ){
+       
+            if ( elem_id == ufs.id ){
 
-        // linha 59 = linha 60 
-        //elemento.addEventListener('mouseover', funcaoover)
-        elemento.onmouseover = marcaMunicipio
+                let uf_perc_gato = uf.perc_gato
 
-        //elemento.removeEventListener() // se usar 'addEventListener'
+                elemento.dataset.indice = uf_perc_gato
 
-        elemento.onmouseout = desmarcaMunicipio;
-        */
+                // opacidade
+                elemento.setAttribute('fill-opacity', numAleatorio)
+
+                elemento.onmouseover = marcaMunicipio
+
+                elemento.onmouseout = desmarcaMunicipio;
+    
+                // Paro de checar
+                break
+            }
+        }
 
     })
 /*   
@@ -130,8 +135,7 @@ function marcaMunicipio(event){
 
     elemento.classList.add('ativo');
 
-    
-    let nome = dadosMunicipio[0].nome;
+    //let nome = dadosMunicipio[0].nome;
     let uf = dadosMunicipio[0].microrregiao.mesorregiao.UF.sigla;
     let indice = elemento.dataset.indice;
 
@@ -139,7 +143,7 @@ function marcaMunicipio(event){
 
     // Tem cofio alternativo para isso
     //console.log(dadosMunicipio[0].nome);
-    document.querySelector('#muni-titulo').textContent = nome + '(' + uf + ')';
+    document.querySelector('#muni-titulo').textContent = uf;
     document.querySelector('#muni-valor').textContent = "índice: " + indice;
 }
 
