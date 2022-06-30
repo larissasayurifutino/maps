@@ -33,6 +33,14 @@ let ufs = [
     {"id": 53, "UF": "DF", "estado": "Distrito Federal",    "dom_cao": 427, "perc_cao": 41.1,   "dom_gato": 107, "perc_gato": 10.3}
 ]
 
+
+const perc_gato_list = ufs.map(function(uf){
+    return uf.perc_gato
+})
+
+
+let max_perc_gato = Math.max(...perc_gato_list);
+
 // como a função carrega um arquivo, usamos o termo async para esperar um resultado
 // para indicar que ela vai esperar o carregamento
 // para usar 'await'
@@ -69,25 +77,40 @@ async function loadMapData(){
     // Selecionar cada UF para fazer uma ação: colocar cor
     // Dentro do elemento com id mapa-conteudo, todos os path do svg
     let elemMunicipios = document.querySelectorAll('#mapa-conteudo svg path');
-    //console.log(elemMunicipios);
+    console.log(elemMunicipios);
     
 
     // Iterando pelos municipios
      elemMunicipios.forEach((elemento) => {
-        console.log(elemento.id);
+        //console.log(elemento.id);
 
         let elem_id = elemento.id
 
-        for ( let uf of ufs ){
+        let dadosUF = ufs.filter(function(item){
+            return item.id == elem_id;
+        })[0]
+
+
+        let uf_perc_gato = dadosUF.perc_gato/max_perc_gato
+
+        elemento.setAttribute('fill-opacity', uf_perc_gato)
+
+        elemento.onmouseover = marcaMunicipio
+
+        elemento.onmouseout = desmarcaMunicipio;
+
+        elemento.dataset.textohover = dadosUF.estado + ' - ' + (dadosUF.perc_gato) + '%'
+
+        /*for ( let uf of ufs ){
        
-            if ( elem_id == ufs.id ){
+            if ( elem_id == uf.id ){
 
                 let uf_perc_gato = uf.perc_gato
 
                 elemento.dataset.indice = uf_perc_gato
 
                 // opacidade
-                elemento.setAttribute('fill-opacity', numAleatorio)
+                //elemento.setAttribute('fill-opacity', numAleatorio)
 
                 elemento.onmouseover = marcaMunicipio
 
@@ -97,6 +120,7 @@ async function loadMapData(){
                 break
             }
         }
+        */
 
     })
 /*   
@@ -136,15 +160,16 @@ function marcaMunicipio(event){
     elemento.classList.add('ativo');
 
     //let nome = dadosMunicipio[0].nome;
-    let uf = dadosMunicipio[0].microrregiao.mesorregiao.UF.sigla;
+    //let uf = dadosMunicipio[0].microrregiao.mesorregiao.UF.sigla;
+    let texto = elemento.dataset.textohover;
     let indice = elemento.dataset.indice;
 
-    console.log(dadosMunicipio, uf);
+    console.log(dadosMunicipio, texto);
 
     // Tem cofio alternativo para isso
     //console.log(dadosMunicipio[0].nome);
-    document.querySelector('#muni-titulo').textContent = uf;
-    document.querySelector('#muni-valor').textContent = "índice: " + indice;
+    document.querySelector('#muni-titulo').textContent = texto;
+    //document.querySelector('#muni-valor').textContent = "índice: " + indice;
 }
 
 function desmarcaMunicipio(event){
