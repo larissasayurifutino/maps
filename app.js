@@ -91,7 +91,7 @@ async function loadMapData(){
         })[0]
 
 
-        let uf_perc_gato = dadosUF.perc_gato/max_perc_gato
+        let uf_perc_gato = 1 - (dadosUF.perc_gato/max_perc_gato)
 
         elemento.setAttribute('fill-opacity', uf_perc_gato)
 
@@ -99,52 +99,13 @@ async function loadMapData(){
 
         elemento.onmouseout = desmarcaMunicipio;
 
-        elemento.dataset.textohover = dadosUF.estado + ' - ' + (dadosUF.perc_gato) + '%'
+        elemento.dataset.textohover = dadosUF.estado
+        elemento.dataset.indice = dadosUF.perc_gato + '% das 🏠 tem um 🐈';
 
-        /*for ( let uf of ufs ){
-       
-            if ( elem_id == uf.id ){
-
-                let uf_perc_gato = uf.perc_gato
-
-                elemento.dataset.indice = uf_perc_gato
-
-                // opacidade
-                //elemento.setAttribute('fill-opacity', numAleatorio)
-
-                elemento.onmouseover = marcaMunicipio
-
-                elemento.onmouseout = desmarcaMunicipio;
-    
-                // Paro de checar
-                break
-            }
-        }
-        */
-
+        //document.querySelector('#muni-titulo').textContent = dadosUF.estado;
+        //document.querySelector('#muni-valor').textContent = dadosUF.perc_gato + "% " ;
     })
-/*   
-    // carrega o arquivo de dados municipais
-    let dadosJson = await fetch(dadosUrl);
-    mapaDados = await dadosJson.json();
 
-    let mapaConteudo = document.querySelector('#mapa-conteudo');
-    mapaConteudo.innerHTML = mapaMalha;
-
-    let elemMunicipios = document.querySelectorAll('#mapa-conteudo svg path');
-
-    elemMunicipios.forEach((elemento) => {
-        let numAleatorio = Math.random()*0.8; // cria um índice fictício com um número aleatório
-        elemento.dataset.indice = (1 - numAleatorio).toFixed(2); // adiciona esse índice aos atributos do elemento
-
-        // determina a opacidade de cor do preenchimento de acordo com o índice
-        elemento.setAttribute('fill-opacity', elemento.dataset.indice);
-        // determina a função a executar no mouseover
-        elemento.onmouseover = marcaMunicipio;
-        // determina a função a executar no mouseout
-        elemento.onmouseout = desmarcaMunicipio;
-        
-    });*/
 }
 
 function marcaMunicipio(event){
@@ -164,12 +125,12 @@ function marcaMunicipio(event){
     let texto = elemento.dataset.textohover;
     let indice = elemento.dataset.indice;
 
-    console.log(dadosMunicipio, texto);
+    //console.log(dadosMunicipio, texto);
 
     // Tem cofio alternativo para isso
     //console.log(dadosMunicipio[0].nome);
     document.querySelector('#muni-titulo').textContent = texto;
-    //document.querySelector('#muni-valor').textContent = "índice: " + indice;
+    document.querySelector('#muni-valor').textContent = indice;
 }
 
 function desmarcaMunicipio(event){
@@ -177,39 +138,5 @@ function desmarcaMunicipio(event){
     elemento.classList.remove('ativo')
 }
 
-/*function marcaMunicipio(event){
-    // seleciona o alvo do evento (o vetor do município)
-    let elemento = event.target;
-    // pega o atributo id do elemento, que tem o código do IBGE
-    let codigoAlvo = elemento.id;
-    // let codigo = dados.properties.codarea;
-    let dadosMunicipio = mapaDados.filter(function(item){
-        return item.id === codigoAlvo;
-    });
 
-    // pega o nome do municipio do json
-    let nome = dadosMunicipio[0].nome;
-    // pega a UF desse município do json
-    let uf = dadosMunicipio[0].microrregiao.mesorregiao.UF.sigla;
-
-    // tira a classe 'ativo' da seleção anterior, se houver
-    let selecaoAnterior = document.querySelector('path.ativo');
-    if(selecaoAnterior){ selecaoAnterior.classList.remove("ativo") }
-
-    // adiciona a classe 'ativo' ao elemento atual
-    elemento.classList.add("ativo");
-
-    // preenche os elementos com nome, UF e o índice
-    document.querySelector('#muni-titulo').textContent = nome + " (" + uf + ") ";
-    document.querySelector('#muni-valor').textContent = "índice: " + elemento.dataset.indice;
-}
-
-function desmarcaMunicipio(event){
-    // seleciona o alvo do evento (o vetor do município)
-    let elemento = event.target;
-    // remove a classe de destaque
-    elemento.classList.remove("ativo");
-}
-
-*/
 loadMapData();

@@ -10,30 +10,47 @@
             width: 100%;
             height: 100%;
             margin:0;
-            background: rgba(150, 87, 180, 1);
             font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background: GhostWhite;
         }
         *{
             box-sizing: border-box;
         }
-        #muni{
+
+        #muni, footer{
             width: 90%;
             height: 100px;
             margin: 0 auto;
             line-height: 100px;
-            font-size: 32px;
             font-weight: bold;
-            text-align: center;
-            color: #FFF;
+            text-align: center;   
             display: flex;
             justify-content: space-between;
         }
 
+        .text{
+            width: 90%;
+            height: 100px;
+            margin: 0 auto;
+            font-weight: bold;
+            text-align: left;   
+        }
+
+        #muni{
+            font-size: 32px;
+        }
+
+        footer{
+            font-size: 20px;
+        }
+
         #mapa-conteudo {
             margin: 0 auto;
-            width: 90%;
-            height: calc(90% - 100px);
-            background: rgba(0,0,0,0.1);
+            width: 70%;
+            height: calc(70% - 100px);
+            background:  rgba(161, 196, 248, 0.5); 
             border-radius: 10px;
             overflow: scroll;
             padding: 30px;
@@ -41,6 +58,7 @@
             justify-content: center;
             align-content: center;
         }
+
         svg{
             height: 100%;
             width: 100%;
@@ -49,24 +67,61 @@
         svg path{
             fill: rgb(255, 255, 255);
             cursor: pointer;
-            stroke: rgba(103, 61, 118,0.5);
-            stroke-width: 40;
+            stroke:  black;
+            stroke-width: 200;
         }
+
         svg path.ativo {
-            fill: rgba(250, 208, 101, 1);
+            stroke:  black;
+            stroke-width: 400;
             fill-opacity: 1;
         }
         
     </style>
 </head>
 <body>
+
+    <div class = 'text'>
+        <p>
+            Que o número de pets tá crescendo por aí acho que você já percebeu, né? 
+        </p> 
+    
+        <p>
+            Segundo o <a href = "http://institutopetbrasil.com/"> Instituto pet Brasil</a> e dados do IBGE a novidade mesmo está no 
+            crescimento do número de casas com um felino para ronronar. 
+        </p>
+    
+        <p>
+            Essa é uma mudança que acompanha alterações na forma de viver e habitar dos brasileiros, que vem morando cada vez mais 
+            sozinhos e em espaços menores.
+        </p>
+    
+        <p>
+            Há oportunidades e demandas enormes para acolher cada vez mais desses bichinhos nas nossas vidas!
+        </p>  
+    </div>    
+  
+
     <div id="muni">
         <div id="muni-titulo">Selecione um município</div>
         <div id="muni-valor"></div>
     </div>
+
+
+
     <div id="mapa-conteudo"> <!-- quadrado roxo escuro-->
         
     </div>
+
+
+
+    <footer>
+        <p>
+          Fonte:
+          <a href="https://sidra.ibge.gov.br/pesquisa/pns">Pesquisa Nacional de Saúde 2019</a>,
+          IBGE.
+        </p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
