@@ -9,7 +9,7 @@ This repo has html and javascript codes to plot a map for the number of houses w
 
 This project aims:
 
-* to practice how to use maps to tell a story thta its comprehensions depens on a spacial analysis. It is part of Datavis Studio 02 and Desenvolvimento de Aplicativos Web classes from Master em Jornalismo de Dados e Data Storytelling (INSPER).
+* to practice how to use maps to tell a story whose comprehensions depends on a spacial analysis. It is part of 'Datavis Studio 02' and 'Desenvolvimento de Aplicativos Web' classes from Master em Jornalismo de Dados e Data Storytelling (INSPER).
 
 
 ## Details
@@ -24,14 +24,16 @@ This project was inspired by:
 
 * [sidra.ibge.gov.br/dogs_data](https://sidra.ibge.gov.br/tabela/4930)
 
+* [servicodados.ibge.gov.br/api/malhas/intrarregiao=UF](https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?intrarregiao=UF)
+
 
 ## To do
 
-1. Plot a map to each variable.
+1. to Plot a map to each variable.
 
-2. Make a button that filters the pet.
+2. to Make a button that filters the pet.
 
-3. Correlate pets numbers with social indexes.
+3. to Correlate pets numbers with social indexes.
 
 ## Last update
 
